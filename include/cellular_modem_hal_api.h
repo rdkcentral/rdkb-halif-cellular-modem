@@ -34,6 +34,15 @@
 extern "C"{
 #endif
 
+
+/*
+ * TODO:
+ *
+ * 1. Extend the return codes by listing out the possible reasons of failure, to improve the interface in the future.
+ *    This was reported during the review for header file migration to opensource github.
+ *
+ */
+
 /**
 * @brief Perform a factory reset on the modem.
 *

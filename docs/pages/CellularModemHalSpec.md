@@ -20,12 +20,7 @@ This HAL layer is intended to be a common HAL,should be usable by any Ccspcompon
 
 There is no dependent API's is expected to be intialized for invoking CellularModem HAL client module.
 
-RDK CellularModem HAL doesn't mandates any predefined requirements for implementation of these API's. it is upto the 
-3rd party vendors to handle it appropriately to meet operational requirements.
-
-For Independent API's 3rd party implementation is expected to work without any prerequisties.
-
-Failure to meet these requirements will likely result in undefined and unexpected behaviour.
+3rd party vendors will implement appropriately to meet operational requirements. This interface is expected to block if the hardware is not ready.
 
 ## Threading Model
 
@@ -42,7 +37,8 @@ All API's are expected to be called from multiple process.
 CellularModem HAL client module is responsible to allocate and deallocate memory for necessary API's as specified in API Documentation.
 Different 3rd party vendors allowed to allocate memory for internal operational requirements. In this case 3rd party implementations should be responsible to deallocate internally.
 
-[TODO]: # (State a footprint requirement. Example: This should not exceed XXXX KB.)
+TODO:
+State a footprint requirement. Example: This should not exceed XXXX KB.
 
 ## Power Management Requirements
 
@@ -57,9 +53,9 @@ There are no asynchronous notifications.
 
 CellularModem HAL API's are expected to work synchronously and should complete within a time period commensurate with the complexity of the operation and in accordance with any relevant specification. 
 Any calls that can fail due to the lack of a response should have a timeout period in accordance with any relevant documentation.
-The upper layers will call this API from a single thread context, this API should not suspend.
 
-[TODO]: # (As we state that they should complete within a time period, we need to state what that time target is, and pull it from the spec if required. Define the timeout requirement.)
+TODO:
+As we state that they should complete within a time period, we need to state what that time target is, and pull it from the spec if required. Define the timeout requirement.
 
 ## Internal Error Handling
 
@@ -87,10 +83,9 @@ Logging should be defined with log levels as per Linux standard logging.
 
 Make sure CellularModem HAL is not contributing more to memory and CPU utilization while performing normal operations and Commensurate with the operation required.
 
-
 ## Quality Control
 
-MTA HAL implementation should pass checks using any third party tools like `Coverity`, `Black duck`, `Valgrind` without any issue to ensure quality.
+Cellular Modem HAL implementation should pass checks using any third party tools like `Coverity`, `Black duck`, `Valgrind` without any issue to ensure quality.
 
 There should not be any memory leaks/corruption introduced by HAL and underneath 3rd party software implementation.
 
@@ -101,7 +96,7 @@ CellularModem HAL implementation is expected to released under the Apache Licens
 
 ## Build Requirements
 
-The source code should be able to be built under Linux Yocto environment and should be delivered as a shared library named as libhal_cellular_modem_hal_api.la
+The source code should be able to be built under Linux Yocto environment and should be delivered as a shared library named as `libhal_cellular_modem_hal_api.la`
   
 ## Variability Management
 
@@ -117,8 +112,10 @@ None
 
 All HAL function prototypes and datatype definitions are available in `cellular_modem_hal_api.h` file.
     
-     1. Components/Process must include `cellular_modem_hal_api.h` to make use of CellularModem hal capabilities.
-     2. Components/Process should add linker dependency for `libhal_cellular_modem_hal_api`.
+1.   Components/Process must include `cellular_modem_hal_api.h` to make 
+     use of CellularModem hal capabilities.
+2.   Components/Process should add linker dependency for\
+     `libhal_cellular_modem_hal_api`.
 
 ## Theory of operation and key concepts
 
