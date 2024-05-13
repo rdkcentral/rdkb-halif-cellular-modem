@@ -20,7 +20,7 @@
 /**
  * 
  * @file cellular_modem_hal_api.h
- * @brief The cellular_modem_hal_api provides an interface for modem settings like factory reset,reboot and firmware.
+ * @brief The cellular_modem_hal_api provides an interface for controlling and querying the state of cellular modems, including power management, configuration, SIM card operations, network interactions (scanning, registration, connection), data session management, and access to essential modem information and statistics.
 */
 
 
@@ -36,46 +36,53 @@ extern "C"{
 
 
 /*
- * TODO:
- *
- * 1. Extend the return codes by listing out the possible reasons of failure, to improve the interface in the future.
- *    This was reported during the review for header file migration to opensource github.
- *
- */
-
-/**
-* @brief Perform a factory reset on the modem.
-*
-* This function is responsible for resetting the modem to its defualt factory settings.
-*
-* @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILED if any error is detected.
+* TODO (Enhance Error Reporting):
+*   - Replace the generic `RETURN_ERR` with a more descriptive error code enumeration.
+*   - Define specific error codes to pinpoint various failure scenarios, including:
+*       - Invalid input parameters (e.g., null pointers, out-of-range values)
+*       - Resource allocation failures (e.g., out-of-memory)
+*       - Communication or timeout issues with external systems (e.g., modem, network)
+*       - File system errors (e.g., file not found, permission denied)
+*       - Hardware-specific errors (e.g., SIM card not present, eUICC malfunction)
+*       - Internal errors within the HAL
+*   - Document the new error codes thoroughly in the header file and any relevant guides.
 */
+
+/**!
+ * @brief Performs a factory reset on the modem.
+ *
+ * Resets the modem to its default factory settings, erasing any custom configurations.
+ *
+ * @returns Status of the operation:
+ * @retval STATUS_SUCCESS - On successful factory reset.
+ * @retval STATUS_FAILED - On failure (check for specific error details).
+ *
+ * @note This operation is irreversible and may result in data loss.
+ */
 int Modem_FactoryReset(void);
 
-/**
-* @brief Reboot the modem.
-*
-* This function is responsible for rebooting the modem.
-*
-* @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILED if any error is detected.
-*/
+/**!
+ * @brief Reboots the modem.
+ *
+ * Initiates a reboot of the modem hardware.
+ *
+ * @returns Status of the reboot operation.
+ * @retval STATUS_SUCCESS - On success.
+ * @retval STATUS_FAILED - On failure (check for specific error details). 
+ */
 int Modem_Reboot(void);
 
-/**
-* @brief Retrieve the firmware version of the modem which is responsible for fetching the current firmware version of the modem.
-*
-* @param[out] firmware_version A pointer to a character buffer where the firmware version will be stored.
-*                              \n The buffer size of firmware_version should be atleast 128 bytes long.
-*                              \n The possible string is "EM06ALAR04A01M4G_01.003.01.003".
-*
-* @return The status of the operation.
-* @retval STATUS_SUCCESS if successful.
-* @retval STATUS_FAILED if any error is detected.
-*/
+/**!
+ * @brief Retrieves the current firmware version of the modem.
+ *
+ * This function retrieves the modem's firmware version and stores it in the provided buffer.
+ *
+ * @param[out] firmware_version - Buffer (min. 128 bytes) to store the firmware version (e.g., "EM06ALAR04A01M4G_01.003.01.003").
+ *
+ * @returns Status of the operation:
+ * @retval STATUS_SUCCESS - On success.
+ * @retval STATUS_FAILED - On failure (e.g., invalid parameter, retrieval error).
+ */
 int Modem_Firmware_Version(char *firmware_version);
 
 #ifdef __cplusplus
