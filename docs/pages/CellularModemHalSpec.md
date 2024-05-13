@@ -3,8 +3,16 @@
 ## Acronyms
 
 - `HAL` \- Hardware Abstraction Layer
+- `HALIF` \- HAL Interface
+- `RDK` \- Reference Design Kit
 - `RDK-B` \- Reference Design Kit for Broadband Devices
+- `SIM` \- Subscriber Identity Module
+- `PIN` \- Personal Identification Number
+- `PUK` \- Personal Unblocking Key
+- `SMS` \- Short Message Service
+- `USSD` \- Unstructured Supplementary Service Data
 - `OEM` \- Original Equipment Manufacture
+
 
 ## Description
 
