@@ -51,24 +51,34 @@ extern "C"{
 /**!
  * @brief Performs a factory reset on the modem.
  *
- * Resets the modem to its default factory settings, erasing any custom configurations.
+ * Resets the modem to its default factory settings, erasing any custom configurations and restoring all settings to their original state. This is typically used to resolve software issues or to clean the configuration before a new setup.
  *
  * @returns Status of the operation:
- * @retval STATUS_SUCCESS - On successful factory reset.
- * @retval STATUS_FAILED - On failure (check for specific error details).
- *
- * @note This operation is irreversible and may result in data loss.
+ * @retval STATUS_SUCCESS - On successful factory reset of the modem.
+ * @retval STATUS_FAILED - On failure. Potential failure reasons include:
+ *                          - Failure to access or modify configuration storage
+ *                          - Insufficient permissions to perform the reset
+ *                          - Hardware or firmware issues that prevent resetting
+ *                          - Interruptions during the reset process
+ * 
  */
 int Modem_FactoryReset(void);
 
 /**!
  * @brief Reboots the modem.
  *
- * Initiates a reboot of the modem hardware.
+ * Initiates a reboot of the modem hardware. This operation attempts to safely shutdown and restart the modem,
+ * ensuring that all services are cleanly restarted. This is typically used to apply new settings or recover from
+ * an unstable state.
  *
- * @returns Status of the reboot operation.
- * @retval STATUS_SUCCESS - On success.
- * @retval STATUS_FAILED - On failure (check for specific error details). 
+ * @returns Status of the reboot operation:
+ * @retval STATUS_SUCCESS - On successful reboot of the modem.
+ * @retval STATUS_FAILED - On failure. Potential failure reasons include:
+ *                          - Inability to secure necessary system resources for reboot
+ *                          - Failure in initial shutdown phase of the modem
+ *                          - Hardware or firmware issues preventing reboot
+ *                          - Security or permission restrictions
+ * 
  */
 int Modem_Reboot(void);
 
