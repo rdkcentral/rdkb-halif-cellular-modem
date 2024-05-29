@@ -18,10 +18,17 @@
 */
 
 /**
- * 
  * @file cellular_modem_hal_api.h
- * @brief The cellular_modem_hal_api provides an interface for controlling and querying the state of cellular modems, including power management, configuration, SIM card operations, network interactions (scanning, registration, connection), data session management, and access to essential modem information and statistics.
-*/
+ * @brief This file defines an interface for controlling and querying the state of cellular modems.
+ *
+ * The interface provides functions for:
+ *
+ * - **Modem Management:**
+ *    - Factory reset (`Modem_FactoryReset()`)
+ *    - Reboot (`Modem_Reboot()`)
+ *    - Firmware version retrieval (`Modem_Firmware_Version()`)
+ *
+ */
 
 
 #ifndef __CCSP_HAL_CELL_MAN_H__
@@ -48,7 +55,7 @@ extern "C"{
 *   - Document the new error codes thoroughly in the header file and any relevant guides.
 */
 
-/**!
+/**
  * @brief Performs a factory reset on the modem.
  *
  * Resets the modem to its default factory settings, erasing any custom configurations and restoring all settings to their original state. This is typically used to resolve software issues or to clean the configuration before a new setup.
@@ -64,7 +71,7 @@ extern "C"{
  */
 int Modem_FactoryReset(void);
 
-/**!
+/**
  * @brief Reboots the modem.
  *
  * Initiates a reboot of the modem hardware. This operation attempts to safely shutdown and restart the modem,
@@ -82,7 +89,7 @@ int Modem_FactoryReset(void);
  */
 int Modem_Reboot(void);
 
-/**!
+/**
  * @brief Retrieves the current firmware version of the modem.
  *
  * This function retrieves the modem's firmware version and stores it in the provided buffer.
