@@ -43,8 +43,6 @@ The CellularModem HAL client module does not have explicit dependencies on other
 
 ## Threading Model
 
-CellularModem HAL is not thread safe
-
 The CellularModem HAL is not thread-safe. Any module or component invoking its APIs must ensure thread safety through external synchronization mechanisms.
 
 **Vendor Implementation:**
